@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMA Fist - Combattants</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/lefafoicom.png">
+</head>
+<body class="dark-theme">
+    <header>
+        <a href="maPage.html">
+            <img src="logo-mma.png" alt="MMA Fist Logo" class="header-logo">
+        </a>
+        <h1>Nos Combattants Légendaires</h1>
+        <nav>
+            <ul>
+                <li><a href="maPage.html#section-actualites">Actualités</a></li>
+                <li><a href="materiel.html">Matériels</a></li>
+                <li><a href="evaluation.html">Évaluation & Orientation</a></li>
+                <li><a href="maPage.html#contact">Contact</a></li>
+                <li><a href="maPage.html">Page d'accueil</a></li>
+            </ul>
+            <p>Découvrez les profils des plus grands talents du MMA.</p>
+        </nav>
+    </header>
+
+
+    <section class="general-content-section">
+    <h2>Nos Combattants Étoiles</h2>
+    <p>Découvrez les profils des légendes et des talents montants du MMA.</p>
+
+    <div class="search-bar-container">
+        <input type="text" id="fighterSearch" placeholder="Rechercher un combattant (nom, surnom, nationalité, style...)">
+        <button id="clearSearch">X</button> </div>
+
+    <div id="fighterProfilesGrid" class="fighter-profiles-grid">
+        </div>
+</section>
+
+    <main>
+        <section class="combattants-list">
+            <h2>Les Stars de l'Octogone</h2>
+            <div id="combattants-container" class="cards-container">
+                <p>Chargement des combattants...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 [le vibe coding déchire]</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const combattantsContainer = document.getElementById('combattants-container');
+
+            // Simule un appel API pour récupérer les données des combattants
+            fetch('data/combattants.json') // Assure-toi que ce chemin est correct !
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur de réseau ou fichier non trouvé: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(combattants => {
+                    combattantsContainer.innerHTML = ''; // Vide le message de chargement
+
+                    if (combattants.length === 0) {
+                        combattantsContainer.innerHTML = '<p>Aucun combattant trouvé pour le moment.</p>';
+                        return;
+                    }
+
+                    combattants.forEach(combattant => {
+                        const combattantCard = `
+                            <article class="combattant-card orientation-card">
+                                <h3>${combattant.nom} (${combattant.surnom})</h3>
+                                <img src="images/${combattant.image}" alt="${combattant.nom}" onerror="this.onerror=null;this.src='images/placeholder.jpg';">
+                                <p><strong>Nationalité :</strong> ${combattant.nationalite}</p>
+                                <p><strong>Styles :</strong> ${combattant.styles.join(', ')}</p>
+                                <p><strong>Record :</strong> ${combattant.records}</p>
+                                <p>${combattant.description}</p>
+                                <a href="#" class="card-link">Voir le profil complet</a>
+                            </article>
+                        `;
+                        combattantsContainer.innerHTML += combattantCard;
+                    });
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des combattants :', error);
+                    combattantsContainer.innerHTML = '<p>Désolé, impossible de charger les profils des combattants pour le moment.</p>';
+                });
+        });
+    </script>
+    <script src="combattants.js"></script>
+</body>
+</html>

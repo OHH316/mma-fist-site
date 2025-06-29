@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMA Fist - Évaluation & Orientation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/lefafoicom.png">
+</head>
+
+<body class="dark-theme">
+    <header>
+        <a href="maPage.html">
+            <img src="logo-mma.png" alt="MMA Fist Logo" class="header-logo">
+        </a>
+        <h1>Bienvenue sur notre page d'évaluation des compétences et d'orientation. Ici vous trouverez aussi bien des conseils techniques, que matériels pour vos camps d'entraînement mais aussi vos combats.</h1>
+        <nav>
+            <ul>
+                <li><a href="maPage.html#section-actualites">Actualités</a></li>
+                <li><a href="materiel.html">Matériels</a></li> <li><a href="combattants.html">Combattants</a></li> <li><a href="maPage.html#contact">Contact</a></li>
+                <li><a href="maPage.html">Page d'accueil</a></li>
+            </ul>
+            <p>Notre mission : vous accompagner dans votre progression.</p>
+        </nav>
+    </header>
+
+
+
+    <section class="evaluation-form-section">
+    <h2>Trouvez Votre Voie dans le MMA !</h2>
+    <p>Répondez à quelques questions pour obtenir des recommandations personnalisées de combattants et de matériel.</p>
+
+    <form id="orientationForm">
+        <div class="form-group">
+            <label for="experience">Quel est votre niveau d'expérience ?</label>
+            <div>
+                <input type="radio" id="expDebutant" name="experience" value="debutant" checked>
+                <label for="expDebutant">Débutant</label><br>
+                <input type="radio" id="expIntermediaire" name="experience" value="intermediaire">
+                <label for="expIntermediaire">Intermédiaire</label><br>
+                <input type="radio" id="expAvance" name="experience" value="avance">
+                <label for="expAvance">Avancé</label>
+            </div>
+        </div>
+
+        <div class="form-group style-choices">
+            <legend>Quels styles de combat vous intéressent ? (Cochez tout ce qui s'applique)</legend>
+            <div>
+                <input type="checkbox" id="styleBoxe" name="styles" value="Boxe">
+                <label for="styleBoxe">Boxe</label><br>
+                <input type="checkbox" id="styleLutte" name="styles" value="Lutte">
+                <label for="styleLutte">Lutte</label><br>
+                <input type="checkbox" id="styleJjb" name="styles" value="JJB">
+                <label for="styleJjb">Jiu-Jitsu Brésilien</label><br>
+                <input type="checkbox" id="styleMuayThai" name="styles" value="Muay Thai">
+                <label for="styleMuayThai">Muay Thai</label>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label for="objective">Quel est votre objectif principal ?</label>
+            <select id="objective" name="objective">
+                <option value="fitness">Améliorer ma condition physique</option>
+                <option value="competition">Compétition</option>
+                <option value="autodefense">Apprendre l'auto-défense</option>
+                <option value="decouverte">Découvrir le sport</option>
+            </select>
+        </div>
+
+        <div class="form-submit">
+            <button type="submit" class="btn-more-info">Obtenir mes Recommandations</button>
+        </div>
+    </form>
+
+    <div id="recommendationsResult">
+        </div>
+</section>
+
+
+
+
+
+
+
+    <main>
+        <section class="fighter-evaluation">
+            <h2>Évalue ton Profil de Combattant</h2>
+            <div class="dutch-man-container">
+                <img src="dutch-man-avatar.png" alt="Mannequin de combattant avec muscles" class="dutch-man-avatar">
+
+                <div class="characteristics">
+                    <h3>Caractéristiques Physiques & Styles</h3>
+                    <p><strong>Nom du Combattant :</strong> <span id="display-name">Chargement...</span></p>
+                    <p><strong>Nationalité :</strong> <span id="display-nationality">Chargement...</span></p>
+                    <p><strong>Poids :</strong> <span id="display-weight">Chargement...</span> kg</p>
+                    <p><strong>Taille :</strong> <span id="display-height">Chargement...</span> cm</p>
+                    <p><strong>Styles choisis :</strong> <span id="display-styles">Chargement...</span></p>
+
+                    <p><strong>Force :</strong> <span id="strength-value">À évaluer</span></p> <p><strong>Endurance :</strong> <span id="endurance-value">À évaluer</span></p> <p><strong>Vitesse :</strong> <span id="speed-value">À évaluer</span></p> <p><strong>Style principal détecté :</strong> <span id="detected-main-style">Non défini</span></p>
+                    <p><strong>Styles secondaires :</strong> <span id="detected-secondary-styles">Non définis</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="orientation-section">
+            <h2>Orientation : Techniques & Matériels Recommandés</h2>
+            <div class="cards-container" id="orientation-cards-container">
+                <p id="no-cards-message">Sélectionne des styles sur la page d'accueil pour voir des recommandations personnalisées !</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 [le vibe coding déchire]</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Récupérer les paramètres de l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const nomCombattant = urlParams.get('nom');
+            const nationaliteCombattant = urlParams.get('nationalite'); // NOUVEAU
+            const poidsCombattant = urlParams.get('poids');             // NOUVEAU
+            const tailleCombattant = urlParams.get('taille');           // NOUVEAU
+            const stylesChoisisParam = urlParams.get('styles');
+
+            // 2. Cibler les éléments d'affichage du profil du combattant
+            const displayNameSpan = document.getElementById('display-name');
+            // AJOUTS ICI POUR LES SPAN DES DONNÉES PHYSIQUES
+            const displayNationalitySpan = document.getElementById('display-nationality');
+            const displayWeightSpan = document.getElementById('display-weight');
+            const displayHeightSpan = document.getElementById('display-height');
+            // FIN DES AJOUTS
+            const displayStylesSpan = document.getElementById('display-styles');
+            const detectedMainStyleSpan = document.getElementById('detected-main-style');
+            const detectedSecondaryStylesSpan = document.getElementById('detected-secondary-styles');
+            const cardsContainer = document.getElementById('orientation-cards-container');
+            const noCardsMessage = document.getElementById('no-cards-message');
+
+            // Cibles pour les statistiques Force, Endurance, Vitesse
+            const strengthValueSpan = document.getElementById('strength-value');
+            const enduranceValueSpan = document.getElementById('endurance-value');
+            const speedValueSpan = document.getElementById('speed-value');
+
+
+            // 3. Afficher le nom et les styles choisis (déjà fonctionnel)
+            if (nomCombattant) {
+                displayNameSpan.textContent = nomCombattant;
+            } else {
+                displayNameSpan.textContent = "Combattant inconnu";
+            }
+
+            // Affichage des données physiques NOUVEAU
+            if (nationaliteCombattant) {
+                displayNationalitySpan.textContent = nationaliteCombattant;
+            } else {
+                displayNationalitySpan.textContent = "Non spécifiée";
+            }
+            if (poidsCombattant) {
+                displayWeightSpan.textContent = poidsCombattant;
+            } else {
+                displayWeightSpan.textContent = "Non spécifié";
+            }
+            if (tailleCombattant) {
+                displayHeightSpan.textContent = tailleCombattant;
+            } else {
+                displayHeightSpan.textContent = "Non spécifiée";
+            }
+
+
+            let stylesArray = [];
+            if (stylesChoisisParam) {
+                stylesArray = stylesChoisisParam.split(','); // Convertir la chaîne en tableau
+                displayStylesSpan.textContent = stylesArray.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', '); // Mise en forme
+                noCardsMessage.style.display = 'none'; // Cacher le message "pas de cartes"
+            } else {
+                displayStylesSpan.textContent = "Aucun style sélectionné";
+            }
+
+            // 4. Déterminer le style principal et secondaire (logique simple d'exemple - déjà fonctionnel)
+            if (stylesArray.length > 0) {
+                detectedMainStyleSpan.textContent = stylesArray[0].charAt(0).toUpperCase() + stylesArray[0].slice(1);
+                if (stylesArray.length > 1) {
+                    detectedSecondaryStylesSpan.textContent = stylesArray.slice(1).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ');
+                } else {
+                    detectedSecondaryStylesSpan.textContent = "Non applicable";
+                }
+            } else {
+                detectedMainStyleSpan.textContent = "Polyvalent / Non défini";
+                detectedSecondaryStylesSpan.textContent = "Non défini";
+            }
+
+
+            // ... (code précédent de récupération des paramètres URL et ciblage des éléments) ...
+
+// 5. Calculer et afficher les statistiques (Force, Endurance, Vitesse)
+let force = 50; // Valeurs de base
+let endurance = 50;
+let vitesse = 50;
+
+// Bonus/Malus basés sur les styles (ton code actuel, mais vérifié pour la cohérence)
+stylesArray.forEach(style => {
+    switch (style) {
+        case 'striker':
+            vitesse += 20;
+            force += 10;
+            break;
+        case 'grappler':
+            force += 25;
+            endurance += 15;
+            break;
+        case 'brawler':
+            force += 15;
+            endurance += 10;
+            break;
+        case 'wrestler':
+            force += 20;
+            endurance += 20;
+            break;
+        case 'karateka':
+            vitesse += 25;
+            endurance += 10;
+            break;
+    }
+});
+
+// NOUVEAU : Ajustements basés sur le POIDS
+const poidsNum = parseFloat(poidsCombattant); // Convertit le poids en nombre
+if (!isNaN(poidsNum)) { // S'assure que c'est un nombre valide
+    if (poidsNum > 100) { // Exemple pour les poids super-lourds
+        force += 15;
+        vitesse -= 10;
+        endurance -= 5;
+    } else if (poidsNum >= 85 && poidsNum <= 100) { // Poids lourds
+        force += 10;
+        vitesse -= 5;
+    } else if (poidsNum >= 70 && poidsNum < 85) { // Poids moyens
+        // Équilibré, pas de gros bonus/malus ici
+    } else if (poidsNum < 70) { // Poids légers
+        vitesse += 10;
+        force -= 5;
+        endurance += 5; // Plus agiles, potentiellement plus d'endurance relative
+    }
+}
+
+// NOUVEAU : Ajustements basés sur la TAILLE
+const tailleNum = parseFloat(tailleCombattant); // Convertit la taille en nombre
+if (!isNaN(tailleNum)) { // S'assure que c'est un nombre valide
+    if (tailleNum > 190) { // Grande taille (longueur de portée)
+        vitesse += 5; // Avantage en vitesse/portée sur les coups
+        endurance -= 5; // Peut-être un peu moins d'endurance pour gérer un grand corps
+    } else if (tailleNum >= 175 && tailleNum <= 190) { // Taille moyenne
+        // Neutre
+    } else if (tailleNum < 175) { // Petite taille (agilité, centre de gravité bas)
+        endurance += 5;
+        force += 5; // Pour les prises au corps à corps
+    }
+}
+
+// S'assurer que les valeurs ne dépassent pas 100 et ne sont pas négatives
+force = Math.max(0, Math.min(100, force));
+endurance = Math.max(0, Math.min(100, endurance));
+vitesse = Math.max(0, Math.min(100, vitesse));
+
+strengthValueSpan.textContent = `${force}%`;
+enduranceValueSpan.textContent = `${endurance}%`;
+speedValueSpan.textContent = `${vitesse}%`;
+
+// ... (suite du code pour la génération des cartes) ...
+
+
+
+            // 6. Générer les cartes d'orientation en fonction des styles choisis (ton code, amélioré)
+            const allCards = [{
+                    id: 'striker-boxe',
+                    styles: ['striker', 'brawler'], // Corrigé pour correspondre à tes styles
+                    title: 'Techniques de Boxe Avancées',
+                    img: 'technique de boxe.png',
+                    description: 'Maîtrise les combinaisons de coups et le jeu de jambes pour dominer le striking.',
+                    link: '#'
+                },
+                {
+                    id: 'grappler-jjb',
+                    styles: ['grappler', 'wrestler'], // Corrigé
+                    title: 'Soumissions au Sol : Les Essentiels',
+                    img: 'tech-grappling.png',
+                    description: 'Découvre les clés de bras, étranglements et autres soumissions efficaces au sol.',
+                    link: '#'
+                },
+                {
+                    id: 'materiel-gants',
+                    styles: ['striker', 'brawler', 'grappler', 'wrestler', 'karateka'], // Convient à tous
+                    title: 'Choisir ses Gants de MMA',
+                    img: 'gants.png',
+                    description: 'Guide complet pour sélectionner les gants parfaits pour l\'entraînement et le combat.',
+                    link: '#'
+                },
+                {
+                    id: 'conditioning',
+                    styles: ['striker', 'grappler', 'brawler', 'wrestler', 'karateka'], // Convient à tous
+                    title: 'Optimiser son Conditionnement Physique',
+                    img: 'bouteille-mma.jpg', // Utilise cette image si tu n'en as pas d'autre
+                    description: 'Boostez votre endurance et votre force pour les combats longs et intenses.',
+                    link: '#'
+                },
+                {
+                    id: 'kickboxing',
+                    styles: ['striker', 'karateka'],
+                    title: 'Bases du Kickboxing',
+                    img: 'tech-kickboxing.png', // Assure-toi d'avoir cette image
+                    description: 'Apprenez les coups de pied puissants et la garde spécifique au kickboxing.',
+                    link: '#'
+                }
+                // Ajoute d'autres cartes ici avec leurs styles associés
+            ];
+
+            const recommendedCards = allCards.filter(card =>
+                stylesArray.some(userStyle => card.styles.includes(userStyle.toLowerCase()))
+            );
+
+            if (recommendedCards.length === 0 && stylesArray.length > 0) {
+                cardsContainer.innerHTML = '<p class="no-recommendation">Nous n\'avons pas encore de recommandations spécifiques pour cette combinaison de styles. Restez connecté !</p>';
+                cardsContainer.style.textAlign = 'center';
+            } else if (recommendedCards.length > 0) {
+                cardsContainer.innerHTML = '';
+                recommendedCards.forEach(cardData => {
+                    const cardHtml = `
+                        <article class="orientation-card">
+                            <h3>${cardData.title}</h3>
+                            <img src="${cardData.img}" alt="${cardData.title}">
+                            <p>${cardData.description}</p>
+                            <a href="${cardData.link}" class="card-link">En savoir plus</a>
+                        </article>
+                    `;
+                    cardsContainer.innerHTML += cardHtml;
+                });
+            }
+            // Si stylesArray est vide (l'utilisateur n'a pas sélectionné de styles), le message par défaut reste visible.
+        });
+    </script>
+    <script src="evaluation.js"></script>
+</body>
+
+</html>

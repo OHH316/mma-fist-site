@@ -1,0 +1,68 @@
+
+[
+  {
+    "id": 1,
+    "nom": "Gants de MMA PRO",
+    "categorie": "Gants",
+    "marque": "Venom",
+    "prix": "89.99€",
+    "image": "materiel-gants.png",
+    "description": "Gants d'entraînement et de combat, offrant une protection optimale et une excellente prise.",
+    "lien_achat": "https://fr.venum.com/collections/mma/products/gants-de-mma-venum-challenger-noir-noir"
+  },
+  {
+    "id": 2,
+    "nom": "Protege-tibias Fighter",
+    "categorie": "Protection",
+    "marque": "Everlast",
+    "prix": "65.00€",
+    "image": "protege-tibias.png",
+    "description": "Protection essentielle pour les entraînements intensifs et le sparring.",
+    "lien_achat": "https://fr.venum.com/collections/mma/products/protege-tibias-venum-challenger-noir-noir-1"
+  },
+  {
+    "id": 3,
+    "nom": "Kimono de JJB Compétition",
+    "categorie": "Vêtements",
+    "marque": "Tatami Fightwear",
+    "prix": "130.00€",
+    "image": "rash-guards.png",
+    "description": "Kimono léger et résistant, parfait pour les compétitions de Jiu-Jitsu Brésilien.",
+    "lien_achat": "https://fr.venum.com/collections/mma/products/rashguard-manches-courtes-venum-tactical-xt-noir-rouge-feu"
+  },
+
+  {
+    "id": 4,
+    "nom": "punching-ball",
+    "categorie": "materiel d'entrainement",
+    "marque": "MMA Fist",
+    "prix": "380.99€",
+    "image": "punching-ball.png",
+    "lien_achat":"https://fr.venum.com/collections/sacs-de-frappe/products/sac-de-frappe-venum-x-top-rank-original-bleu-marine"
+
+  },
+
+  {
+    "id": 5,
+    "nom": "mannequin d'entrainement",
+    "categorie": "materiel d'entrainement",
+    "marque":"boom man",
+    "prix": "1300€",
+    "image": "mannequin-entrainements.png",
+    "lien_achat":"https://www.dragonsports.eu/fr/11861-mannequin-de-grapplingsac-de-frappe-ninestars.html"
+
+  },
+
+  {
+    "id": 6,
+    "nom": "protege-dents",
+    "categorie": "materiel de combats",
+    "marque":"iron teeth",
+    "prix": "25€",
+    "image":"protege-dents.png",
+    "lien_achat":"https://fr.venum.com/collections/mma/products/rashguard-manches-courtes-venum-tactical-xt-noir-rouge-feu"
+   
+  }
+
+
+]

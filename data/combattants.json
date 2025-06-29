@@ -1,0 +1,36 @@
+
+[
+  {
+    "id": 1,
+    "nom": "Khabib Nurmagomedov",
+    "surnom": "The Eagle",
+    "nationalite": "Russe",
+    "styles": ["Lutteur", "Grappler"],
+    "records": "29-0-0",
+    "image": "khabib.jpg",
+    "description": "Surnommé 'The Eagle', Khabib Nurmagomedov est largement considéré comme le plus grand poids léger de tous les temps, ayant terminé sa carrière invaincu avec un record de 29-0. Sa domination sans précédent en grappling et ses soumissions implacables ont fait de lui une force incontournable dans l'octogone, laissant un héritage de discipline et de supériorité technique."
+  },
+  {
+    "id": 2,
+    "nom": "Conor McGregor",
+    "surnom": "The Notorious",
+    "nationalite": "Irlandais",
+    "styles": ["Striker", "Boxeur"],
+    "records": "22-6-0",
+    "image": "conor-mcgregor.jpg",
+    "description": "Véritable icône du MMA, Conor 'The Notorious' McGregor est célèbre pour son incroyable puissance de frappe, ses KO spectaculaires et son charisme inégalé. Pionnier des combats inter-catégories, il a captivé des millions de fans avec son style flamboyant et ses performances mémorables."
+  },
+  {
+    "id": 3,
+    "nom": "Jon Jones",
+    "surnom": "Bones",
+    "nationalite": "Américain",
+    "styles": ["Polyvalent", "Wrestler", "Striker"],
+    "records": "27-1-0 (1 NC)",
+    "image": "jon-jones.jpg",
+    "description": "Souvent cité comme le plus grand combattant de l'histoire du MMA, Jon 'Bones' Jones est un maître inégalé des arts martiaux mixtes. Sa polyvalence exceptionnelle, combinant une lutte élite, une frappe innovante et une intelligence de combat hors pair, lui a permis de dominer la catégorie des poids lourds-légers pendant des années et de conquérir le titre poids lourds."
+  }
+
+]
+
+

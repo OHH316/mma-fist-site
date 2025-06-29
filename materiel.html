@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMA Fist - Matériels</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/lefafoicom.png">
+</head>
+<body class="dark-theme">
+    <header>
+        <a href="maPage.html">
+            <img src="logo-mma.png" alt="MMA Fist Logo" class="header-logo">
+        </a>
+        <h1>Équipements et Matériels MMA</h1>
+        <nav>
+            <ul>
+                <li><a href="maPage.html#section-actualites">Actualités</a></li>
+                <li><a href="combattants.html">Combattants</a></li>
+                <li><a href="evaluation.html">Évaluation & Orientation</a></li>
+                <li><a href="maPage.html#contact">Contact</a></li>
+                <li><a href="maPage.html">Page d'accueil</a></li>
+            </ul>
+            <p>Trouvez le matériel adapté à votre pratique.</p>
+        </nav>
+    </header>
+
+    <main>
+        <section class="general-content-section">
+    <h2>Équipez-vous pour le Combat</h2>
+    <p>Découvrez notre sélection des meilleurs équipements pour l'entraînement et la compétition.</p>
+
+    <div class="search-bar-container">
+        <input type="text" id="materialSearch" placeholder="Rechercher un matériel (nom, marque, catégorie...)">
+        <button id="clearMaterialSearch">X</button>
+    </div>
+
+    <div id="materialCardsContainer" class="cards-container">
+        </div>
+</section>
+
+
+
+        <section class="materiel-list">
+            <h2>Nos Recommandations Matériels</h2>
+            <div id="materiel-container" class="cards-container">
+                <p>Chargement des matériaux...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 [le vibe coding déchire]</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const materielContainer = document.getElementById('materiel-container');
+
+            // Simule un appel API pour récupérer les données des matériaux
+            fetch('data/materiel.json') // Assure-toi que ce chemin est correct !
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur de réseau ou fichier non trouvé: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(materiel => {
+                    materielContainer.innerHTML = ''; // Vide le message de chargement
+
+                    if (materiel.length === 0) {
+                        materielContainer.innerHTML = '<p>Aucun matériel trouvé pour le moment.</p>';
+                        return;
+                    }
+
+                    materiel.forEach(materiel => {
+                        const materielCard = `
+                            <article class="materiel-card orientation-card">
+                                <h3>${materiel.nom} (${materiel.marque})</h3>
+                                <img src="images/${materiel.image}" alt="${materiel.nom}" onerror="this.onerror=null;this.src='images/placeholder.png';">
+                                <p><strong>Catégorie :</strong> ${materiel.categorie}</p>
+                                <p><strong>Prix :</strong> ${materiel.prix}</p>
+                                <p>${materiel.description}</p>
+                                <a href="${materiel.lien_achat}" class="card-link" target="_blank">Acheter</a>
+                            </article>  
+                        `;
+                        materielContainer.innerHTML += materielCard;
+                    });
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des matériaux :', error);
+                    materielContainer.innerHTML = '<p>Désolé, impossible de charger les matériaux pour le moment.</p>';
+                });
+        });
+    </script>
+    <script src="materiel.js"></script>
+</body>
+</html>

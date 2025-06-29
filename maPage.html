@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMA Fist</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/lefafoicom.png">
+</head>
+
+<body>
+    <header>
+        <img src="combat.png" alt="Des combats de MMA" style="width: auto; border-radius: 8px;">
+        <h1>cette page est entierement dedier aux mma</h1>
+
+        <nav>
+            <ul>
+                <li><a href="#section-actualites">Actualités</a></li>
+                <li><a href="combattants.html">Combattants</a></li>
+                <li><a href="materiel.html">Matériels</a></li> <li><a href="evaluation.html">Évaluation & Orientation</a></li> <li><a href="#contact">Contact</a></li>
+            </ul>
+            <p>ce n'est qu'une page de teste pour mes compétence en dev web, c'est juste pour voir ci je peux le faire avant de retourné a l'ia. Apres le dev web ca sera les logiciels et les app mobile.</p>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h2>Crée ton profil de combattant</h2>
+            <form action="#" method="post" id="fighter-form">
+                <div>
+                    <label for="fighter-name">Ton nom de combattant :</label>
+                    <input type="text" id="fighter-name" name="nom" required>
+                </div>
+
+                <div>
+                    <label for="nationality">Nationalité :</label>
+                    <input type="text" id="nationality" name="nationalite" placeholder="Ex: Français, Américain">
+                </div>
+
+                <div>
+                    <label for="weight">Poids (kg) :</label>
+                    <input type="number" id="weight" name="poids" min="30" max="200" step="0.1">
+                </div>
+
+                <div>
+                    <label for="height">Taille (cm) :</label>
+                    <input type="number" id="height" name="taille" min="100" max="250">
+                </div>
+
+                <fieldset class="style-choices">
+                    <legend>Choisis des styles de Combat (tu peux en prendre plusieurs) :</legend>
+                    <div>
+                        <input type="checkbox" id="grappler" name="style[]" value="grappler">
+                        <label for="grappler">Grappler (lutte, jjb, soumission)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="striker" name="style[]" value="striker">
+                        <label for="striker">Striker (Boxe, Muay Thai, coups)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="brawler" name="style[]" value="brawler">
+                        <label for="brawler">Bagareur (Combat de rue, agressif)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="wrestler" name="style[]" value="wrestler">
+                        <label for="wrestler">Lutteur (Amenées au sol, contrôle)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="karateka" name="style[]" value="karateka">
+                        <label for="karateka">Karateka (Coups précis, distances)</label>
+                    </div>
+                </fieldset>
+
+                <div>
+                    <button type="submit">Envoyer mon Profil</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>Comme dit plus hauts cette page ne sert que a me testé en dev web, surtout pour prompté a l'ia ce que veux comme app web ou extension, pour aussi comprendre ce qu'elle fait mais aussi comprendre l'architecture , les composants des app web</h2>
+            <p>je suis juste un autodidacte😁</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 [le vibe coding déchire]</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
