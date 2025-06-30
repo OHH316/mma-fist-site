@@ -859,3 +859,88 @@ footer p {
         font-size: 1.8em;
     }
 }
+
+
+/* Variables pour le thème sombre (par défaut) */
+:root {
+    --primary-color: #BB86FC; /* Un violet vif pour les titres/accents en mode sombre */
+    --secondary-color: #03DAC6; /* Un cyan pour d'autres accents */
+    --accent-color: #FDD835; /* Un jaune pour les boutons/liens actifs */
+
+    --text-color: #E0E0E0; /* Texte clair sur fond sombre */
+    --secondary-text-color: #B0B0B0; /* Texte secondaire, plus gris */
+
+    --bg-color: #121212; /* Fond principal très sombre */
+    --secondary-bg-color: #1F1F1F; /* Fonds des cartes, sections, légèrement plus clair que le principal */
+    --border-color: #333333; /* Bordures sombres */
+    --shadow-color: rgba(0, 0, 0, 0.4); /* Ombres plus prononcées en mode sombre */
+}
+
+/* Variables pour le thème clair (quand .light-theme est appliqué) */
+body.light-theme {
+    --primary-color: #6200EE; /* Un violet plus foncé pour les titres */
+    --secondary-color: #018786; /* Un vert-bleu foncé */
+    --accent-color: #FF5722; /* Un orange vif pour les accents */
+
+    --text-color: #212121; /* Texte sombre sur fond clair */
+    --secondary-text-color: #757575; /* Texte secondaire plus clair */
+
+    --bg-color: #F0F0F0; /* Fond principal très clair */
+    --secondary-bg-color: #FFFFFF; /* Fonds des cartes, sections, blanc */
+    --border-color: #E0E0E0; /* Bordures claires */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Ombres plus subtiles en mode clair */
+}
+
+/* Appliquer les variables aux éléments existants */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color); /* Le texte par défaut du body */
+    transition: background-color 0.5s ease, color 0.5s ease; /* Transition douce lors du changement de thème */
+}
+
+header {
+    background-color: var(--secondary-bg-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav ul li a {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Appliquer aux titres si ce n'est pas déjà fait */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color); /* Utilise la couleur primaire du thème actif */
+}
+
+/* Appliquer aux boutons et liens d'action */
+.btn, .read-more-button, .card a { /* Ajoutez d'autres sélecteurs de boutons/liens si nécessaire */
+    background-color: var(--accent-color);
+    color: var(--text-color); /* Pour les liens, le texte reste sombre/clair selon le thème */
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover, .read-more-button:hover, .card a:hover {
+    background-color: var(--primary-color); /* Ou une autre couleur si vous préférez */
+}
+
+/* Pour les cartes/sections qui ont un fond secondaire */
+.card, .general-content-section, .blog-card, .article-content {
+    background-color: var(--secondary-bg-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+/* Pour les textes secondaires */
+.card p, .card .score-text, .blog-excerpt, .article-meta, footer p {
+    color: var(--secondary-text-color);
+}
+
+/* Ajoutez d'autres sélecteurs qui utilisent des couleurs spécifiques */
+/* Par exemple, si vous avez des icônes ou des bordures spécifiques */
