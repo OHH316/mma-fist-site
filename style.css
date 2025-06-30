@@ -713,3 +713,149 @@ footer p {
         box-sizing: border-box; /* Inclut padding et border dans la largeur */
     }
 }
+
+/* --- Blog Styles --- */
+
+.blog-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    justify-content: center; /* Centrer les cartes si moins de 3 */
+}
+
+.blog-card {
+    background-color: var(--secondary-bg-color); /* Utiliser la variable de thème */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Pour les futures animations */
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.blog-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color); /* Utiliser la variable de thème */
+}
+
+.blog-card h3 {
+    color: var(--primary-color); /* Utiliser la variable de thème */
+    padding: 15px;
+    margin-bottom: 0;
+    font-size: 1.3em;
+}
+
+.blog-excerpt {
+    padding: 0 15px 10px;
+    color: var(--text-color); /* Utiliser la variable de thème */
+    font-size: 0.95em;
+    line-height: 1.5;
+    flex-grow: 1; /* Permet au paragraphe de prendre l'espace disponible */
+}
+
+.read-more-button {
+    display: inline-block;
+    background-color: var(--accent-color); /* Utiliser la variable de thème */
+    color: #fff;
+    padding: 10px 15px;
+    margin: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.read-more-button:hover {
+    background-color: var(--primary-color); /* Utiliser la variable de thème */
+}
+
+/* Styles pour les pages d'articles individuelles */
+.article-content {
+    background-color: var(--secondary-bg-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-width: 900px; /* Limite la largeur pour une meilleure lecture */
+    margin: 30px auto; /* Centre l'article */
+    color: var(--text-color);
+}
+
+.article-content h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.article-meta {
+    text-align: center;
+    color: var(--secondary-text-color);
+    font-size: 0.9em;
+    margin-bottom: 30px;
+}
+
+.article-main-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.article-content h3 {
+    color: var(--accent-color);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+}
+
+.article-content p, .article-content ul {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.article-content ul {
+    list-style-type: disc;
+    margin-left: 25px;
+}
+
+.article-content ul li {
+    margin-bottom: 10px;
+}
+
+.back-to-blog {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.back-to-blog:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments for blog */
+@media (max-width: 768px) {
+    .blog-articles-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+    .article-content {
+        padding: 20px;
+        margin: 20px;
+    }
+    .article-content h2 {
+        font-size: 1.8em;
+    }
+}
