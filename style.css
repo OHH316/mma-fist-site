@@ -944,3 +944,63 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ajoutez d'autres sélecteurs qui utilisent des couleurs spécifiques */
 /* Par exemple, si vous avez des icônes ou des bordures spécifiques */
+
+
+/* Styles pour le bouton de bascule de thème */
+.theme-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 20px; /* Espace par rapport à la nav */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    width: 28px; /* Taille de l'icône */
+    height: 28px;
+    filter: invert(100%); /* Rend l'icône blanche en mode sombre */
+    transition: filter 0.5s ease; /* Transition douce pour l'icône */
+}
+
+/* En mode clair, l'icône du soleil sera noire (pas d'inversion) */
+body.light-theme .theme-icon {
+    filter: invert(0%); /* L'icône du soleil apparaîtra dans sa couleur normale (souvent noire) */
+}
+
+/* Ajustement pour les petits écrans */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Empile les éléments sur mobile */
+        align-items: center;
+        padding: 15px 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    nav ul li {
+        margin: 5px 0;
+    }
+    .theme-toggle-button {
+        margin-top: 15px;
+        margin-left: 0; /* Pas de marge à gauche sur mobile */
+    }
+}
+
+/* Assurez-vous que le header gère bien le positionnement de tous ses enfants */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px; /* Ajustez le padding si nécessaire */
+    /* ... le reste de votre CSS de header */
+}

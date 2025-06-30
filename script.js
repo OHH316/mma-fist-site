@@ -33,3 +33,45 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Erreur JavaScript : Le formulaire avec l'ID 'fighter-form' est introuvable sur cette page.");
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+
+    // Charger le thème préféré de l'utilisateur depuis le stockage local (LocalStorage)
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        if (savedTheme === 'light-theme') {
+            themeIcon.src = 'images/icon-sun.svg';
+            themeIcon.alt = 'Light theme icon';
+        } else {
+            themeIcon.src = 'images/icon-moon.svg';
+            themeIcon.alt = 'Dark theme icon';
+        }
+    } else {
+        // Si aucun thème n'est enregistré, définir le thème par défaut (dark-theme)
+        body.classList.add('dark-theme');
+        themeIcon.src = 'images/icon-moon.svg';
+        themeIcon.alt = 'Dark theme icon';
+        localStorage.setItem('theme', 'dark-theme');
+    }
+
+    // Ajouter l'écouteur d'événements pour le bouton de bascule
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-theme')) {
+            body.classList.remove('dark-theme');
+            body.classList.add('light-theme');
+            themeIcon.src = 'images/icon-sun.svg';
+            themeIcon.alt = 'Light theme icon';
+            localStorage.setItem('theme', 'light-theme');
+        } else {
+            body.classList.remove('light-theme');
+            body.classList.add('dark-theme');
+            themeIcon.src = 'images/icon-moon.svg';
+            themeIcon.alt = 'Dark theme icon';
+            localStorage.setItem('theme', 'dark-theme');
+        }
+    });
+});
