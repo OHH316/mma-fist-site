@@ -1,60 +1,176 @@
-
-
-main {
-    padding: 20px;
-    line-height: 1.6; /* Améliore la lisibilité des paragraphes */
-    max-width: 1000px; /* Limite la largeur du contenu principal pour une meilleure lisibilité */
-    margin:0 20px auto; /* Centre le contenu principal et ajoute des marges verticales */
-    background-color: rgb(11, 0, 0); /* Donne un fond blanc au contenu principal */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ajoute une légère ombre */
-    border-radius: 8px;
+/* --- Styles Généraux --- */
+html {
+    box-sizing: border-box;
 }
 
-footer {
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+
+    /* L'image de fond globale et les lignes rouges */
+    background-image: url('combat.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Pseudo-élément pour les lignes rouges diagonales */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 0, 0, 0.1),
+        rgba(255, 0, 0, 0.1) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* Appliquer les variables aux titres par défaut */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+}
+
+/* --- Header --- */
+header {
     background-color: var(--secondary-bg-color);
-    color: var(--secondary-text-color);
+    width: 100%;
+    padding: 15px 50px;
     text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    border-top: 2px solid var(--border-color);
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5 ease;
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
-
-
-/* Styles spécifiques pour la section principale du contenu */
-.main-section {
-    background-color: #090000;
-    color: #333333; /* Couleur de texte plus lisible */
+.header-logo {
+    max-width: 100px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0;
 }
 
-/* Styles spécifiques pour la section du formulaire */
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* --- Navigation --- */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+}
+
+nav ul li a:hover {
+    background-color: var(--primary-color);
+    color: white; /* Conserve blanc pour contraste sur primary-color */
+    border-color: var(--primary-color);
+}
+
+nav p {
+    color: var(--secondary-text-color);
+    max-width: 700px;
+    margin: 10px auto 20px auto;
+    font-size: 1em;
+}
+
+/* --- Main Content Container (pour toutes les sections dans le main) --- */
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.6;
+}
+
+/* --- Sections Générales --- */
+section {
+    background-color: var(--secondary-bg-color);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+section h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+}
+
+section p {
+    color: var(--secondary-text-color);
+    font-size: 0.9em;
+}
+
+/* Styles spécifiques pour la section du formulaire (main-section n'est pas nécessaire) */
 .form-section {
-    background-color: var(--secondary-bg-color); /* Un arrière-plan légèrement différent pour le formulaire */
+    background-color: var(--secondary-bg-color); /* Utilise la variable */
     padding: 30px;
 }
 
-/* Styles pour les groupes d'input (Nom) */
+/* Styles pour les groupes d'input */
 .form-group {
-    margin-bottom: 15px; /* Espacement entre les groupes de formulaire */
-    display: flex; /* Pour aligner label et input si tu le souhaites */
-    flex-direction: column; /* Pour que label soit au-dessus de l'input */
-    gap: 8px; /* Espacement entre le label et l'input */
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-
-.form-group label { /* Ajoutez une couleur pour les labels si vous voulez */
+.form-group label {
     color: var(--text-color);
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group textarea,
-.form-group select { /* Styles pour les champs de formulaire */
+.form-group select {
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    background-color: var(--bg-color); /* Ou secondary-bg-color */
+    background-color: var(--bg-color);
     color: var(--text-color);
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
@@ -67,10 +183,9 @@ footer {
     border-color: var(--primary-color);
 }
 
-
 /* Styles pour le fieldset des choix de style */
 .style-choices {
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary-color); /* Utilise la variable */
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -79,26 +194,26 @@ footer {
 .style-choices legend {
     font-weight: bold;
     color: var(--primary-color);
-    padding: 0 5px; /* Petit padding autour du texte de la légende */
+    padding: 0 5px;
 }
 
 /* Styles pour chaque checkbox et son label */
 .checkbox-group {
-    display: flex; /* Pour que la checkbox et son label soient sur la même ligne */
-    align-items: center; /* Pour aligner verticalement la case et le texte */
-    margin-bottom: 8px; /* Espacement entre chaque option de checkbox */
-    gap: 8px; /* Espacement entre la checkbox et son label */
-    color: var(--text-color); /* Couleur de texte par défaut pour les labels */
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+    color: var(--text-color);
 }
 
 /* Styles pour le groupe du bouton d'envoi */
 .form-submit {
-    margin-top: 20px; /* Espacement au-dessus du bouton */
-    text-align: center; /* Pour centrer le bouton si tu veux */
+    margin-top: 20px;
+    text-align: center;
 }
 
 /* Styles pour le bouton d'envoi */
-.form-submit button { /* Si c'est un bouton submit */
+.form-submit button {
     background-color: var(--accent-color);
     color: #fff;
     padding: 12px 25px;
@@ -115,138 +230,10 @@ footer {
     transform: translateY(-2px);
 }
 
-
-/* --- Styles Généraux --- */
-body {
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0; /* Important pour supprimer les marges par défaut du body */
-    padding: 0;
-    line-height: 1.6; /* Meilleure lisibilité du texte */
-    color: #ebe4e4; /* Texte clair par défaut pour le thème sombre */
-    background-color: #1a1a1a; /* Fond très sombre */
-    /* L'image de fond globale et les lignes rouges */
-    background-image: url('combat.png'); /* Ton image de fond */
-    background-size: cover; /* L'image couvrira toute la surface */
-    background-position: center center; /* Centre l'image */
-    background-attachment: fixed; /* L'image reste fixe quand on scroll */
-    background-repeat: no-repeat; /* Ne répète pas l'image */
-    position: relative; /* Nécessaire pour les pseudo-éléments des lignes rouges */
-}
-
-/* Pseudo-élément pour les lignes rouges diagonales */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        -45deg, /* Angle de la ligne (45 degrés en diagonale) */
-        rgba(255, 0, 0, 0.1), /* Rouge transparent pour la première ligne */
-        rgba(255, 0, 0, 0.1) 10px, /* Fin de la première ligne */
-        transparent 10px, /* Début de l'espace transparent */
-        transparent 20px /* Fin de l'espace transparent (crée l'espacement entre les lignes) */
-    );
-    opacity: 0.2; /* Rend les lignes légèrement transparentes */
-    z-index: -1; /* Place les lignes derrière le contenu */
-}
-
-
-/* --- Header --- */
-header {
-    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre semi-transparent pour le header */
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    border-bottom: 2px solid #ff0000; /* Ligne rouge en bas du header */
-}
-
-.header-logo { /* Styles pour l'image du logo dans le header */
-    max-width: 100px; /* Taille réduite pour un logo */
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto 15px auto;
-}
-
-header h1 {
-    color: #ff0000; /* Titre principal en rouge vif */
-    font-size: 2.5em;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Petite ombre sur le texte */
-}
-
-/* --- Navigation --- */
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 15px 0;
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* Plus d'espace entre les liens */
-}
-
-nav a {
-    color: #e0e0e0; /* Texte des liens en clair */
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border: 1px solid transparent; /* Bordure transparente pour éviter le "saut" au survol */
-}
-
-nav a:hover {
-    background-color: #ff0000; /* Fond rouge au survol */
-    color: white; /* Texte blanc au survol */
-    border-color: #ff0000;
-}
-
-nav p {
-    color: #b0b0b0; /* Texte gris clair pour la description */
-    max-width: 700px;
-    margin: 10px auto 20px auto;
-    font-size: 1em;
-}
-
-/* --- Main Content Container (pour toutes les sections dans le main) --- */
-main {
-    max-width: 1000px; /* Largeur maximale pour le contenu principal */
-    margin: 40px auto; /* Centre le main et donne de l'espace */
-    padding: 0 20px; /* Padding latéral pour ne pas coller les bords */
-}
-
-/* --- Sections Générales --- */
-section {
-    background-color: var(--secondary-bg-color); /* Fond semi-transparent pour les sections */
-    padding: 30px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-color); /* Ombre plus prononcée */
-    border: 1px solid var(--border-color); /* Bordure rouge légère */
-    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
-}
-
-section h2 {
-    color: var(--primary-color); /* Titres de section en rouge */
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 1.5em;
-    border-bottom: 1px dashed var(--border-color); /* Ligne pointillée sous le titre */
-    padding-bottom: 10px;
-}
-
-section p {
-    color: var(--secondary-text-color); /* Texte des paragraphes en gris clair */
-    font-size: 0.9em;
-}
-
 /* --- Section Évaluation Combattant --- */
 .dutch-man-container {
     display: flex;
-    flex-direction: column; /* Mannequin au-dessus des caractéristiques par défaut */
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 30px;
@@ -254,27 +241,27 @@ section p {
 }
 
 .dutch-man-avatar {
-    max-width: 200px; /* Taille de ton mannequin */
+    max-width: 200px;
     height: auto;
-    border-radius: 50%; /* Si tu veux une image ronde */
-    border: 3px solid #ff0000;
-    box-shadow: 0 0 15px rgba(255,0,0,0.5);
+    border-radius: 50%;
+    border: 3px solid var(--primary-color); /* Utilise la variable */
+    box-shadow: 0 0 15px var(--shadow-color); /* Utilise la variable */
 }
 
 .characteristics {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--secondary-bg-color); /* Utilise la variable */
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 0, 0, 0.2);
-    width: 100%; /* Prend toute la largeur disponible */
-    max-width: 350px; /* Limite la largeur pour une meilleure présentation */
+    border: 1px solid var(--border-color); /* Utilise la variable */
+    width: 100%;
+    max-width: 350px;
     text-align: left;
 }
 
 .characteristics h3 {
-    color: #ff0000;
+    color: var(--primary-color); /* Utilise la variable */
     margin-bottom: 15px;
-    border-bottom: 1px solid rgba(255,0,0,0.2);
+    border-bottom: 1px solid var(--border-color); /* Utilise la variable */
     padding-bottom: 10px;
 }
 
@@ -284,53 +271,30 @@ section p {
 }
 
 .characteristics strong {
-    color: #e0e0e0;
+    color: var(--text-color); /* Utilise la variable */
 }
-
-/* Pour les grands écrans, place le mannequin et les caractéristiques côte à côte */
-@media (min-width: 768px) {
-    .dutch-man-container {
-        flex-direction: row; /* En ligne pour les grands écrans */
-        justify-content: center;
-        align-items: flex-start; /* Aligne le haut des éléments */
-    }
-
-    .characteristics {
-        max-width: 450px; /* Plus de place pour les caractéristiques */
-    }
-
-     nav ul {
-        flex-direction: column; /* Empile les liens */
-        align-items: center; /* Centre les liens empilés */
-        gap: 10px; /* Espace vertical entre les liens */
-    }
-
-
-
-}
-
 
 /* --- Section Orientation (Cartes) --- */
 .cards-container {
-    display: grid; /* Utilise Grid pour organiser les cartes */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 280px minimum par carte, s'adapte à la largeur */
-    gap: 25px; /* Espacement entre les cartes */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     margin-top: 30px;
 }
 
 .orientation-card {
-    background-color: var(--secondary-bg-color); /* Fond sombre semi-transparent */
-    border: 1px solid var(--border-color); /* Bordure rouge */
+    background-color: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    overflow: hidden; /* Cache ce qui dépasse des coins arrondis */
+    overflow: hidden;
     text-align: center;
     box-shadow: 0 4px 10px var(--shadow-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border-color 0.5s ease; /* Animation au survol */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border-color 0.5s ease;
 }
 
 .orientation-card:hover {
-    transform: translateY(-5px); /* Remonte légèrement au survol */
-    box-shadow: 0 8px 20px var(--shadow-color); /* Ombre rouge au survol */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .orientation-card h3 {
@@ -342,11 +306,11 @@ section p {
 }
 
 .orientation-card img {
-    max-width: 100%; /* L'image prend toute la largeur de la carte */
-    height: 180px; /* Hauteur fixe pour toutes les images de carte */
-    object-fit: cover; /* Couvre l'espace sans déformer */
-    display: block; /* Supprime l'espace sous l'image */
-    border-bottom: 1px solid rgba(255,0,0,0.2);
+    max-width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color); /* Utilise la variable */
 }
 
 .orientation-card p {
@@ -356,14 +320,14 @@ section p {
 }
 
 .card-link {
-    display: block; /* Le lien prend toute la largeur */
+    display: block;
     background-color: var(--accent-color);
     color: white;
     padding: 10px;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    margin-top: auto; /* Pousse le bouton en bas de la carte */
+    margin-top: auto;
 }
 
 .card-link:hover {
@@ -373,25 +337,18 @@ section p {
 /* --- Footer --- */
 footer {
     background-color: var(--secondary-bg-color);
-    color: #b0b0b0;
+    color: var(--secondary-text-color);
     text-align: center;
     padding: 20px;
     margin-top: 50px;
-    border-top: 2px solid var(--border-color); /* Ligne rouge en haut du footer */
+    border-top: 2px solid var(--border-color);
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; /* Correction de la transition */
 }
 
 footer p {
     margin: 0;
     font-size: 0.9em;
 }
-
-/* --- Styles pour la première page (maPage.html) si tu laisses un style.css commun --- */
-/* Si tu as un style.css commun pour toutes les pages, tu peux y laisser tes styles */
-/* pour le formulaire de la première page, par exemple. */
-/* Sinon, tu peux créer un style-accueil.css et un style-evaluation.css */
-/* et les lier séparément dans chaque page. */
-/* Le plus simple pour l'instant est de laisser style.css commun et de surcharger/ajouter */
-/* avec les classes spécifiques comme .dark-theme */
 
 /* --- Styles pour les sections de contenu général --- */
 .general-content-section {
@@ -400,7 +357,6 @@ footer p {
     margin: 40px auto;
     border-radius: 10px;
     background-color: var(--secondary-bg-color);
-    border-radius: 10px;
     box-shadow: 0 5px 15px var(--shadow-color);
     text-align: center;
     animation: fadeIn 0.8s ease-out forwards;
@@ -420,21 +376,21 @@ footer p {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    background-color: var(--secondary-bg-color); /* Légèrement plus clair pour se démarquer */
+    background-color: var(--secondary-bg-color);
     border-radius: 8px;
-    border: 1px solid var(--shadow-color);
+    border: 1px solid var(--border-color); /* Utilise la variable */
 }
 
 .material-showcase .material-image {
-    max-width: 80%; /* Ajuste la taille de l'image */
+    max-width: 80%;
     height: auto;
     border-radius: 5px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px var(--shadow-color); /* Utilise la variable */
 }
 
 .material-showcase h3 {
-    color: var(--primary-color); /* Un rouge un peu plus clair pour les sous-titres */
+    color: var(--primary-color);
     font-size: 1.5em;
     margin-bottom: 10px;
 }
@@ -454,11 +410,10 @@ footer p {
     background-color: var(--primary-color);
 }
 
-
 /* --- Styles pour la grille de profils de combattants --- */
 .fighter-profiles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 ou 3 colonnes selon la taille */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 40px;
 }
@@ -479,10 +434,10 @@ footer p {
 }
 
 .fighter-card .fighter-profile-pic {
-    width: 150px; /* Taille de l'image de profil */
+    width: 150px;
     height: 150px;
-    border-radius: 50%; /* Image ronde */
-    object-fit: cover; /* Assure que l'image remplit le cercle sans déformation */
+    border-radius: 50%;
+    object-fit: cover;
     border: 3px solid var(--primary-color);
     margin-bottom: 15px;
     box-shadow: 0 0 10px var(--shadow-color);
@@ -500,216 +455,40 @@ footer p {
     margin-bottom: 5px;
 }
 
-/* Pour les petits écrans (téléphones) */
-@media (max-width: 600px) {
-    nav ul {
-        flex-direction: column; /* La navigation devient une colonne */
-        align-items: center;
-    }
-    .cards-container {
-        grid-template-columns: 1fr; /* Les cartes s'empilent */
-    }
-    .dutch-man-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-/* Pour les écrans moyens (tablettes) */
-@media (min-width: 601px) and (max-width: 1024px) {
-    .cards-container {
-        grid-template-columns: 1fr 1fr; /* Deux colonnes pour les cartes */
-    }
-}
-
-
-/* Dans ton fichier style.css */
-.dark-theme {
-    background-color: #222;
-    color: #eee;
-}
-.dark-theme header,
-.dark-theme footer,
-.dark-theme section {
-    background-color: #333;
-    border-color: #555;
-}
-/* Adapte les couleurs des textes, liens, etc. pour le thème sombre */
-.dark-theme a {
-    color: #88c0d0;
-}
-
-/* --- Tous vos styles CSS actuels pour desktop (sans les media queries) --- */
-/* ... (votre code CSS que vous avez fourni, mais sans les doublons et les @media) ... */
-
-
-/* --- Media Query pour les tablettes (ex: écrans de 768px à 1024px) --- */
-@media (max-width: 1024px) { /* Appliqué jusqu'à 1024px de large */
-    main {
-        max-width: 90%; /* Occupe plus de largeur sur des écrans plus petits */
-        margin: 20px auto;
-    }
-    .cards-container,
-    .fighter-profiles-grid, 
-    .blog-articles-grid {
-        /* Laissez auto-fit faire son travail ou forcez 2 colonnes si nécessaire */
-        /* grid-template-columns: repeat(2, 1fr); */ /* Alternative si auto-fit ne convient pas */
-        gap: 20px; /* Réduire un peu le gap */
-    }
-    header h1 {
-        font-size: 2.2em;
-    }
-    nav ul {
-        gap: 20px; /* Réduire l'espacement du menu */
-    }
-    /* Si vous avez .dutch-man-container, assurez-vous qu'il reste flexible */
-    .dutch-man-container {
-        flex-direction: row; /* Reste en ligne */
-        justify-content: center;
-        align-items: flex-start;
-        flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si l'écran est trop petit */
-    }
-    .dutch-man-avatar {
-        max-width: 200px;
-    }
-    .characteristics {
-        max-width: 350px;
-    }
-    .carousel-slide img {
-        height: 400px;
-    }
-}
-
-
-/* --- Media Query pour les mobiles (ex: écrans jusqu'à 600px) --- */
-@media (max-width: 767px) {
-    header {
-        flex-direction: column;
-        padding: 15px 10px;
-    }
-    header h1 {
-        font-size: 1.8em; /* Plus petit sur mobile */
-    }
-    .header-logo {
-        max-width: 15px; /* Logo encore plus petit */
-    }
-    nav ul {
-        flex-direction: column; /* Empile le menu verticalement */
-        gap: 10px; /* Réduit l'espacement vertical */
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    nav ul li{
-        margin: 0;
-    }
-    nav a {
-        padding: 6px 10px; /* Réduit le padding des liens */
-        font-size: 0.9em;
-    }
-    main {
-        padding: 0 10px; /* Moins de padding sur les côtés sur mobile */
-        margin: 20px auto;
-    }
-    section {
-        padding: 20px; /* Réduit le padding des sections */
-        margin-bottom: 20px;
-    }
-    section h2 {
-        font-size: 1.6em;
-        margin-bottom: 20px;
-    }
-    body {
-        font-size: 14px; /* Taille de texte générale plus petite */
-    }
-    .cards-container,
-    .fighter-profiles-grid {
-        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
-        gap: 15px; /* Ajuste l'espacement */
-    }
-    .orientation-card img {
-        height: 150px; /* Réduit la hauteur des images de carte */
-    }
-    .fighter-card .fighter-profile-pic {
-        width: 120px;
-        height: 120px;
-    }
-    .dutch-man-container {
-        flex-direction: column; /* Mannequin et caractéristiques s'empilent */
-        align-items: center;
-        gap: 20px;
-    }
-    .dutch-man-avatar {
-        max-width: 180px;
-    }
-    .characteristics {
-        width: 95%; /* Prend presque toute la largeur sur mobile */
-        max-width: none; /* Supprime la limite max-width pour cette taille */
-        padding: 15px;
-    }
-    .carousel-slide img { /* Ajustement pour le carrousel sur mobiles */
-        height: 300px;
-    }
-    .search-bar-container { /* Ajustements pour la barre de recherche sur mobile */
-        flex-direction: column;
-        padding: 10px;
-        max-width: 95%;
-    }
-    #fighterSearch, #clearSearch {
-        width: 100%;
-        box-sizing: border-box;
-    }
-}
-
-
-@media (max-width: 768px) { /* Pour les tablettes/mobiles */
-    .cards-container,
-    .fighter-profiles-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ou juste 1fr si vous voulez toujours une seule colonne sur mobile */
-        gap: 15px;
-    }
-}
-@media (max-width: 480px) { /* Pour les très petits mobiles */
-    .cards-container,
-    .fighter-profiles-grid {
-        grid-template-columns: 1fr; /* Force 1 colonne */
-        padding: 0 5px; /* Réduit encore le padding latéral */
-    }
-}
-
 /* Styles pour la barre de recherche */
 .search-bar-container {
     margin: 30px auto;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--secondary-bg-color); /* Utilise la variable */
     border-radius: 8px;
-    display: flex; /* Pour aligner l'input et le bouton */
+    display: flex;
     gap: 10px;
-    max-width: 600px; /* Limite la largeur de la barre */
-    border: 1px solid rgba(255, 0, 0, 0.3);
+    max-width: 600px;
+    border: 1px solid var(--border-color); /* Utilise la variable */
 }
 
 #fighterSearch {
-    flex-grow: 1; /* Prend l'espace disponible */
+    flex-grow: 1;
     padding: 12px 15px;
-    border: 1px solid #555;
+    border: 1px solid var(--border-color); /* Utilise la variable */
     border-radius: 5px;
-    background-color: #333;
-    color: #eee;
+    background-color: var(--bg-color); /* Utilise la variable */
+    color: var(--text-color);
     font-size: 1.1em;
-    outline: none; /* Supprime le contour bleu au focus */
-    transition: border-color 0.3s ease;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 #fighterSearch::placeholder {
-    color: #aaa;
+    color: var(--secondary-text-color); /* Utilise la variable */
 }
 
 #fighterSearch:focus {
-    border-color: #ff0000; /* Bordure rouge au focus */
+    border-color: var(--primary-color); /* Utilise la variable */
 }
 
 #clearSearch {
-    background-color: #ff0000;
+    background-color: var(--accent-color); /* Utilise la variable */
     color: white;
     border: none;
     padding: 12px 18px;
@@ -720,40 +499,26 @@ footer p {
 }
 
 #clearSearch:hover {
-    background-color: #cc0000;
-}
-
-/* Ajustements responsive pour la barre de recherche */
-@media (max-width: 600px) {
-    .search-bar-container {
-        flex-direction: column; /* Input et bouton s'empilent */
-        padding: 10px;
-        max-width: 95%; /* Prend plus de largeur sur mobile */
-    }
-    #fighterSearch, #clearSearch {
-        width: 100%; /* Prend toute la largeur disponible */
-        box-sizing: border-box; /* Inclut padding et border dans la largeur */
-    }
+    background-color: var(--primary-color); /* Utilise la variable */
 }
 
 /* --- Blog Styles --- */
-
 .blog-articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px 0;
-    justify-content: center; /* Centrer les cartes si moins de 3 */
+    justify-content: center;
 }
 
 .blog-card {
-    background-color: var(--secondary-bg-color); /* Utiliser la variable de thème */
+    background-color: var(--secondary-bg-color);
     border-radius: 8px;
     box-shadow: 0 4px 8px var(--shadow-color);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Pour les futures animations */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .blog-card:hover {
@@ -765,11 +530,11 @@ footer p {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid var(--border-color); /* Utiliser la variable de thème */
+    border-bottom: 1px solid var(--border-color);
 }
 
 .blog-card h3 {
-    color: var(--primary-color); /* Utiliser la variable de thème */
+    color: var(--primary-color);
     padding: 15px;
     margin-bottom: 0;
     font-size: 1.3em;
@@ -777,15 +542,15 @@ footer p {
 
 .blog-excerpt {
     padding: 0 15px 10px;
-    color: var(--text-color); /* Utiliser la variable de thème */
+    color: var(--text-color);
     font-size: 0.95em;
     line-height: 1.5;
-    flex-grow: 1; /* Permet au paragraphe de prendre l'espace disponible */
+    flex-grow: 1;
 }
 
 .read-more-button {
     display: inline-block;
-    background-color: var(--accent-color); /* Utiliser la variable de thème */
+    background-color: var(--accent-color);
     color: #fff;
     padding: 10px 15px;
     margin: 15px;
@@ -796,7 +561,7 @@ footer p {
 }
 
 .read-more-button:hover {
-    background-color: var(--primary-color); /* Utiliser la variable de thème */
+    background-color: var(--primary-color);
 }
 
 /* Styles pour les pages d'articles individuelles */
@@ -804,9 +569,9 @@ footer p {
     background-color: var(--secondary-bg-color);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    max-width: 900px; /* Limite la largeur pour une meilleure lecture */
-    margin: 30px auto; /* Centre l'article */
+    box-shadow: 0 5px 15px var(--shadow-color); /* Utilise la variable */
+    max-width: 900px;
+    margin: 30px auto;
     color: var(--text-color);
 }
 
@@ -831,7 +596,7 @@ footer p {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px var(--shadow-color); /* Utilise la variable */
 }
 
 .article-content h3 {
@@ -868,21 +633,6 @@ footer p {
     color: var(--primary-color);
 }
 
-/* Responsive adjustments for blog */
-@media (max-width: 768px) {
-    .blog-articles-grid {
-        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
-    }
-    .article-content {
-        padding: 20px;
-        margin: 20px;
-    }
-    .article-content h2 {
-        font-size: 1.8em;
-    }
-}
-
-
 /* Variables pour le thème sombre (par défaut) */
 :root {
     --primary-color: #BB86FC; /* Un violet vif pour les titres/accents en mode sombre */
@@ -913,68 +663,13 @@ body.light-theme {
     --shadow-color: rgba(0, 0, 0, 0.1); /* Ombres plus subtiles en mode clair */
 }
 
-/* Appliquer les variables aux éléments existants */
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color); /* Le texte par défaut du body */
-    transition: background-color 0.5s ease, color 0.5s ease; /* Transition douce lors du changement de thème */
-}
-
-header {
-    background-color: var(--secondary-bg-color);
-    box-shadow: 0 2px 5px var(--shadow-color);
-    border-bottom: 1px solid var(--border-color);
-}
-
-nav ul li a {
-    color: var(--text-color);
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: var(--primary-color);
-}
-
-/* Appliquer aux titres si ce n'est pas déjà fait */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--primary-color); /* Utilise la couleur primaire du thème actif */
-}
-
-/* Appliquer aux boutons et liens d'action */
-.btn, .read-more-button, .card a { /* Ajoutez d'autres sélecteurs de boutons/liens si nécessaire */
-    background-color: var(--accent-color);
-    color: var(--text-color); /* Pour les liens, le texte reste sombre/clair selon le thème */
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover, .read-more-button:hover, .card a:hover {
-    background-color: var(--primary-color); /* Ou une autre couleur si vous préférez */
-}
-
-/* Pour les cartes/sections qui ont un fond secondaire */
-.card, .general-content-section, .blog-card, .article-content {
-    background-color: var(--secondary-bg-color);
-    box-shadow: 0 4px 8px var(--shadow-color);
-    border: 1px solid var(--border-color);
-    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
-}
-
-/* Pour les textes secondaires */
-.card p, .card .score-text, .blog-excerpt, .article-meta, footer p {
-    color: var(--secondary-text-color);
-}
-
-/* Ajoutez d'autres sélecteurs qui utilisent des couleurs spécifiques */
-/* Par exemple, si vous avez des icônes ou des bordures spécifiques */
-
-
 /* Styles pour le bouton de bascule de thème */
 .theme-toggle-button {
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    margin-left: 20px; /* Espace par rapport à la nav */
+    margin-left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -986,97 +681,53 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .theme-icon {
-    width: 28px; /* Taille de l'icône */
+    width: 28px;
     height: 28px;
-    filter: invert(100%); /* Rend l'icône blanche en mode sombre */
-    transition: filter 0.5s ease; /* Transition douce pour l'icône */
+    filter: invert(100%);
+    transition: filter 0.5s ease;
 }
 
 /* En mode clair, l'icône du soleil sera noire (pas d'inversion) */
 body.light-theme .theme-icon {
-    filter: invert(0%); /* L'icône du soleil apparaîtra dans sa couleur normale (souvent noire) */
+    filter: invert(0%);
 }
 
-/* Ajustement pour les petits écrans */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column; /* Empile les éléments sur mobile */
-        align-items: center;
-        padding: 15px 10px;
-    }
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
-    }
-    nav ul li {
-        margin: 5px 0;
-    }
-    .theme-toggle-button {
-        margin-top: 15px;
-        margin-left: 0; /* Pas de marge à gauche sur mobile */
-    }
-}
-
-/* Assurez-vous que le header gère bien le positionnement de tous ses enfants */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 50px; /* Ajustez le padding si nécessaire */
-    /* ... le reste de votre CSS de header */
-}
-
-.card {
+.card { /* Cette règle semble générale, peut-être pour .orientation-card, .fighter-card, .blog-card? */
     background-color: var(--secondary-bg-color);
     border-radius: 8px;
-    box-shadow: 0 4px 8px var(--shadow-color); /* Utilise la variable d'ombre */
+    box-shadow: 0 4px 8px var(--shadow-color);
     overflow: hidden;
     text-align: center;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Ajout/Vérification des transitions */
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Monte légèrement */
-    box-shadow: 0 8px 16px var(--shadow-color); /* Ombre plus intense */
-}
-
-/* Dans votre section pour nav ul li a */
-nav ul li a {
-    color: var(--text-color);
-    text-decoration: none;
-    padding: 10px 15px;
-    transition: color 0.3s ease, background-color 0.3s ease; /* Ajout/Vérification */
-}
-
-nav ul li a:hover {
-    color: var(--primary-color);
-    background-color: rgba(var(--primary-color-rgb), 0.1); /* Exemple d'arrière-plan subtil au survol */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow-color);
 }
 
 /* Pour tous les boutons généraux */
-.btn { /* Si vous avez un bouton générique */
+.btn {
     background-color: var(--accent-color);
-    color: #fff; /* Couleur de texte fixe pour les boutons accentués */
+    color: #fff;
     padding: 12px 25px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1em;
     font-weight: bold;
-    text-decoration: none; /* Si c'est un lien stylisé en bouton */
+    text-decoration: none;
     display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Ajout/Vérification */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-    background-color: var(--primary-color); /* Change de couleur au survol */
-    transform: translateY(-2px); /* Léger mouvement vers le haut */
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 /* Animation pour l'apparition des sections */
@@ -1094,24 +745,24 @@ nav ul li a:hover {
 /* --- Carrousel Styles --- */
 .carousel-container {
     width: 100%;
-    max-width: 1400px; /* Adaptez à la largeur max que vous souhaitez */
+    max-width: 1400px;
     margin: 20px auto;
     position: relative;
-    overflow: hidden; /* Cache les images qui débordent */
+    overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 .carousel-slide {
-    display: flex; /* Les images s'alignent horizontalement */
-    transition: transform 0.5s ease-in-out; /* Animation de transition */
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide img {
-    width: 100%; /* Chaque image prend 100% de la largeur du conteneur visible */
-    height: 500px; /* Hauteur fixe pour toutes les images du carrousel */
-    object-fit: cover; /* Assure que l'image couvre l'espace sans se déformer */
-    flex-shrink: 0; /* Empêche les images de rétrécir */
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .carousel-btn {
@@ -1123,9 +774,8 @@ nav ul li a:hover {
     border: none;
     padding: 15px;
     cursor: pointer;
+    z-index: 10;
     font-size: 2em;
-    z-index: 100; /* Assure que les boutons sont au-dessus des images */
-    border-radius: 50%; /* Boutons ronds */
     transition: background-color 0.3s ease;
 }
 
@@ -1141,10 +791,143 @@ nav ul li a:hover {
     right: 10px;
 }
 
-/* Responsive pour le carrousel */
-@media (max-width: 768px) {
+/* --- Media Queries --- */
+
+/* Pour les écrans larges (Desktop) - Gardez vos styles par défaut ici */
+/* (min-width: 1025px) */
+
+
+/* Pour les tablettes (petits écrans, jusqu'à 1024px) */
+@media (max-width: 1024px) {
+    main {
+        max-width: 90%;
+        margin: 20px auto;
+    }
+    .cards-container,
+    .fighter-profiles-grid,
+    .blog-articles-grid {
+        gap: 20px;
+    }
+    header h1 {
+        font-size: 2.2em;
+    }
+    nav ul {
+        gap: 20px;
+    }
+    .dutch-man-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .dutch-man-avatar {
+        max-width: 200px;
+    }
+    .characteristics {
+        max-width: 350px;
+    }
     .carousel-slide img {
-        height: 200px; /* Réduit la hauteur sur mobile */
+        height: 400px;
+    }
+}
+
+/* Pour les mobiles (écrans jusqu'à 767px) */
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        padding: 15px 10px;
+    }
+    .header-logo {
+        max-width: 80px; /* Taille plus raisonnable pour le logo mobile */
+        margin-bottom: 15px;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    nav ul li {
+        margin: 0;
+    }
+    nav ul li a { /* Sélecteur plus spécifique pour les liens de nav */
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+    .theme-toggle-button {
+        margin-top: 15px;
+        margin-left: 0;
+    }
+    main {
+        padding: 0 10px;
+        margin: 20px auto;
+    }
+    section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    section h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    body {
+        font-size: 14px;
+    }
+    .cards-container,
+    .fighter-profiles-grid,
+    .blog-articles-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .orientation-card img {
+        height: 150px;
+    }
+    .fighter-card .fighter-profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    .dutch-man-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .dutch-man-avatar {
+        max-width: 180px;
+    }
+    .characteristics {
+        width: 95%;
+        max-width: none;
+        padding: 15px;
+    }
+    .carousel-slide img {
+        height: 300px;
+    }
+    .search-bar-container {
+        flex-direction: column;
+        padding: 10px;
+        max-width: 95%;
+    }
+    #fighterSearch, #clearSearch {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .article-content {
+        padding: 20px;
+        margin: 20px;
+    }
+    .article-content h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* Pour les très petits mobiles (écrans jusqu'à 480px) */
+@media (max-width: 480px) {
+    .carousel-slide img {
+        height: 200px;
     }
     .carousel-btn {
         padding: 10px;
@@ -1152,8 +935,6 @@ nav ul li a:hover {
     }
 }
 
-@media (max-width: 480px) {
-    .carousel-slide img {
-        height: 200px; /* Encore plus petit sur très petits écrans */
-    }
-}
+/* Les styles du thème sont bien définis avec :root et body.light-theme */
+/* Pas besoin de classes .dark-theme séparées si les variables par défaut sont le thème sombre */
+/* et .light-theme est utilisé pour le basculement. */
