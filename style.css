@@ -1,75 +1,26 @@
- header {
-    background-color: cornflowerblue;
-    /* Supprime width et height, ou utilise: */
-    width: 100%; /* S'assure qu'il prend toute la largeur */
-    min-height: 100px; /* Donne une hauteur minimale, ou juste padding */
-    padding: 20px; /* Augmente le padding pour un meilleur espacement */
-    text-align: center; /* Pour centrer le texte et l'image */
-}
 
-header h1 {
-    color: white;
-    margin-bottom: 10px;
-}
-
-header img {
-    max-width: 150px; /* Limite la largeur de l'image */
-    height: auto; /* Maintient les proportions */
-    border-radius: 8px;
-    display: block; /* Pour pouvoir appliquer des marges si besoin */
-    margin: 0 auto; /* Pour centrer l'image si le header est text-align: center; */
-}
-
-nav ul {
-    list-style: none; /* Supprime les puces par défaut des listes */
-    padding: 0;
-    margin: 0;
-    display: flex; /* Pour aligner les éléments horizontalement */
-    justify-content: center; /* Pour centrer le menu */
-    gap: 20px; /* Ajoute un espacement entre les liens */
-}
-
-nav a {
-    color: white;
-    text-decoration: none; /* Supprime le soulignement des liens */
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: lightgray; /* Change la couleur au survol */
-}
-
-nav p {
-    color: lightgrey;
-    max-width: 800px;
-    margin: 10px auto 20px auto;
-    font-size: 0.9em;
-}
 
 main {
     padding: 20px;
     line-height: 1.6; /* Améliore la lisibilité des paragraphes */
-    max-width: 960px; /* Limite la largeur du contenu principal pour une meilleure lisibilité */
-    margin: 20px auto; /* Centre le contenu principal et ajoute des marges verticales */
+    max-width: 1000px; /* Limite la largeur du contenu principal pour une meilleure lisibilité */
+    margin:0 20px auto; /* Centre le contenu principal et ajoute des marges verticales */
     background-color: rgb(11, 0, 0); /* Donne un fond blanc au contenu principal */
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ajoute une légère ombre */
     border-radius: 8px;
 }
 
 footer {
-    background-color: #333;
-    color: rgb(2, 0, 0);
+    background-color: var(--secondary-bg-color);
+    color: var(--secondary-text-color);
     text-align: center;
-    padding: 15px;
-    margin-top: 30px;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 2px solid var(--border-color);
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5 ease;
 }
 
-section {
-    padding: 20px; /* Un padding uniforme */
-    margin-bottom: 20px; /* Un peu d'espace en bas de chaque section */
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Une petite ombre */
-}
+
 
 /* Styles spécifiques pour la section principale du contenu */
 .main-section {
@@ -79,7 +30,7 @@ section {
 
 /* Styles spécifiques pour la section du formulaire */
 .form-section {
-    background-color: #060000; /* Un arrière-plan légèrement différent pour le formulaire */
+    background-color: var(--secondary-bg-color); /* Un arrière-plan légèrement différent pour le formulaire */
     padding: 30px;
 }
 
@@ -91,9 +42,35 @@ section {
     gap: 8px; /* Espacement entre le label et l'input */
 }
 
+
+.form-group label { /* Ajoutez une couleur pour les labels si vous voulez */
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea,
+.form-group select { /* Styles pour les champs de formulaire */
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-color); /* Ou secondary-bg-color */
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+
 /* Styles pour le fieldset des choix de style */
 .style-choices {
-    border: 1px solid #ccc;
+    border: 1px solid var(--primary-color);
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -101,7 +78,7 @@ section {
 
 .style-choices legend {
     font-weight: bold;
-    color: #555;
+    color: var(--primary-color);
     padding: 0 5px; /* Petit padding autour du texte de la légende */
 }
 
@@ -111,7 +88,7 @@ section {
     align-items: center; /* Pour aligner verticalement la case et le texte */
     margin-bottom: 8px; /* Espacement entre chaque option de checkbox */
     gap: 8px; /* Espacement entre la checkbox et son label */
-    color: #333; /* Couleur de texte par défaut pour les labels */
+    color: var(--text-color); /* Couleur de texte par défaut pour les labels */
 }
 
 /* Styles pour le groupe du bouton d'envoi */
@@ -119,6 +96,25 @@ section {
     margin-top: 20px; /* Espacement au-dessus du bouton */
     text-align: center; /* Pour centrer le bouton si tu veux */
 }
+
+/* Styles pour le bouton d'envoi */
+.form-submit button { /* Si c'est un bouton submit */
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-submit button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
 
 /* --- Styles Généraux --- */
 body {
@@ -224,25 +220,26 @@ main {
 
 /* --- Sections Générales --- */
 section {
-    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent pour les sections */
+    background-color: var(--secondary-bg-color); /* Fond semi-transparent pour les sections */
     padding: 30px;
     margin-bottom: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Ombre plus prononcée */
-    border: 1px solid rgba(255, 0, 0, 0.3); /* Bordure rouge légère */
+    box-shadow: 0 5px 15px var(--shadow-color); /* Ombre plus prononcée */
+    border: 1px solid var(--border-color); /* Bordure rouge légère */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 section h2 {
-    color: #ff0000; /* Titres de section en rouge */
+    color: var(--primary-color); /* Titres de section en rouge */
     text-align: center;
     margin-bottom: 25px;
     font-size: 1.5em;
-    border-bottom: 1px dashed rgba(255, 0, 0, 0.4); /* Ligne pointillée sous le titre */
+    border-bottom: 1px dashed var(--border-color); /* Ligne pointillée sous le titre */
     padding-bottom: 10px;
 }
 
 section p {
-    color: #c0c0c0; /* Texte des paragraphes en gris clair */
+    color: var(--secondary-text-color); /* Texte des paragraphes en gris clair */
     font-size: 0.9em;
 }
 
@@ -322,18 +319,18 @@ section p {
 }
 
 .orientation-card {
-    background-color: rgba(0, 0, 0, 0.7); /* Fond sombre semi-transparent */
-    border: 1px solid rgba(255, 0, 0, 0.4); /* Bordure rouge */
+    background-color: var(--secondary-bg-color); /* Fond sombre semi-transparent */
+    border: 1px solid var(--border-color); /* Bordure rouge */
     border-radius: 10px;
     overflow: hidden; /* Cache ce qui dépasse des coins arrondis */
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border-color 0.5s ease; /* Animation au survol */
 }
 
 .orientation-card:hover {
     transform: translateY(-5px); /* Remonte légèrement au survol */
-    box-shadow: 0 4px 10px var(--shadow-color); /* Ombre rouge au survol */
+    box-shadow: 0 8px 20px var(--shadow-color); /* Ombre rouge au survol */
 }
 
 .orientation-card h3 {
@@ -553,7 +550,8 @@ footer p {
         margin: 20px auto;
     }
     .cards-container,
-    .fighter-profiles-grid {
+    .fighter-profiles-grid, 
+    .blog-articles-grid {
         /* Laissez auto-fit faire son travail ou forcez 2 colonnes si nécessaire */
         /* grid-template-columns: repeat(2, 1fr); */ /* Alternative si auto-fit ne convient pas */
         gap: 20px; /* Réduire un peu le gap */
@@ -577,22 +575,32 @@ footer p {
     .characteristics {
         max-width: 350px;
     }
+    .carousel-slide img {
+        height: 400px;
+    }
 }
 
 
 /* --- Media Query pour les mobiles (ex: écrans jusqu'à 600px) --- */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        padding: 15px 10px;
+    }
     header h1 {
         font-size: 1.8em; /* Plus petit sur mobile */
     }
     .header-logo {
-        max-width: 80px; /* Logo encore plus petit */
+        max-width: 15px; /* Logo encore plus petit */
     }
     nav ul {
         flex-direction: column; /* Empile le menu verticalement */
         gap: 10px; /* Réduit l'espacement vertical */
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+    nav ul li{
+        margin: 0;
     }
     nav a {
         padding: 6px 10px; /* Réduit le padding des liens */
@@ -637,6 +645,18 @@ footer p {
         width: 95%; /* Prend presque toute la largeur sur mobile */
         max-width: none; /* Supprime la limite max-width pour cette taille */
         padding: 15px;
+    }
+    .carousel-slide img { /* Ajustement pour le carrousel sur mobiles */
+        height: 300px;
+    }
+    .search-bar-container { /* Ajustements pour la barre de recherche sur mobile */
+        flex-direction: column;
+        padding: 10px;
+        max-width: 95%;
+    }
+    #fighterSearch, #clearSearch {
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
@@ -1124,7 +1144,7 @@ nav ul li a:hover {
 /* Responsive pour le carrousel */
 @media (max-width: 768px) {
     .carousel-slide img {
-        height: 300px; /* Réduit la hauteur sur mobile */
+        height: 200px; /* Réduit la hauteur sur mobile */
     }
     .carousel-btn {
         padding: 10px;
