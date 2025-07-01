@@ -333,11 +333,11 @@ section p {
 
 .orientation-card:hover {
     transform: translateY(-5px); /* Remonte légèrement au survol */
-    box-shadow: 0 8px 20px rgba(255,0,0,0.3); /* Ombre rouge au survol */
+    box-shadow: 0 4px 10px var(--shadow-color); /* Ombre rouge au survol */
 }
 
 .orientation-card h3 {
-    color: #ff0000;
+    color: var(--primary-color);
     padding: 15px 10px;
     font-size: 1.3em;
     margin-top: 0;
@@ -353,14 +353,14 @@ section p {
 }
 
 .orientation-card p {
-    color: #c0c0c0;
+    color: var(--secondary-text-color);
     padding: 15px;
     font-size: 0.95em;
 }
 
 .card-link {
     display: block; /* Le lien prend toute la largeur */
-    background-color: #ff0000;
+    background-color: var(--accent-color);
     color: white;
     padding: 10px;
     text-decoration: none;
@@ -370,17 +370,17 @@ section p {
 }
 
 .card-link:hover {
-    background-color: #cc0000;
+    background-color: var(--primary-color);
 }
 
 /* --- Footer --- */
 footer {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--secondary-bg-color);
     color: #b0b0b0;
     text-align: center;
     padding: 20px;
     margin-top: 50px;
-    border-top: 2px solid #ff0000; /* Ligne rouge en haut du footer */
+    border-top: 2px solid var(--border-color); /* Ligne rouge en haut du footer */
 }
 
 footer p {
@@ -398,21 +398,23 @@ footer p {
 
 /* --- Styles pour les sections de contenu général --- */
 .general-content-section {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 30px;
-    margin-bottom: 30px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 40px auto;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    color: #c0c0c0; /* Texte gris clair */
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out forwards;
 }
 
 .general-content-section h2 {
-    color: #ff0000;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 25px;
     font-size: 2em;
-    border-bottom: 1px dashed rgba(255, 0, 0, 0.4);
+    border-bottom: 1px dashed var(--border-color);
     padding-bottom: 10px;
 }
 
@@ -421,9 +423,9 @@ footer p {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.05); /* Légèrement plus clair pour se démarquer */
+    background-color: var(--secondary-bg-color); /* Légèrement plus clair pour se démarquer */
     border-radius: 8px;
-    border: 1px solid rgba(255, 0, 0, 0.15);
+    border: 1px solid var(--shadow-color);
 }
 
 .material-showcase .material-image {
@@ -435,14 +437,14 @@ footer p {
 }
 
 .material-showcase h3 {
-    color: #ff5555; /* Un rouge un peu plus clair pour les sous-titres */
+    color: var(--primary-color); /* Un rouge un peu plus clair pour les sous-titres */
     font-size: 1.5em;
     margin-bottom: 10px;
 }
 
 .btn-more-info {
     display: inline-block;
-    background-color: #ff0000;
+    background-color: var(--accent-color);
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -452,7 +454,7 @@ footer p {
 }
 
 .btn-more-info:hover {
-    background-color: #cc0000;
+    background-color: var(--primary-color);
 }
 
 
@@ -465,18 +467,18 @@ footer p {
 }
 
 .fighter-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 0, 0, 0.15);
+    background-color: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 10px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .fighter-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(255,0,0,0.3);
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .fighter-card .fighter-profile-pic {
@@ -484,19 +486,19 @@ footer p {
     height: 150px;
     border-radius: 50%; /* Image ronde */
     object-fit: cover; /* Assure que l'image remplit le cercle sans déformation */
-    border: 3px solid #ff0000;
+    border: 3px solid var(--primary-color);
     margin-bottom: 15px;
-    box-shadow: 0 0 10px rgba(255,0,0,0.4);
+    box-shadow: 0 0 10px var(--shadow-color);
 }
 
 .fighter-card h3 {
-    color: #ff5555;
+    color: var(--primary-color);
     font-size: 1.4em;
     margin-bottom: 8px;
 }
 
 .fighter-card p {
-    color: #c0c0c0;
+    color: var(--secondary-text-color);
     font-size: 0.95em;
     margin-bottom: 5px;
 }
@@ -727,7 +729,7 @@ footer p {
 .blog-card {
     background-color: var(--secondary-bg-color); /* Utiliser la variable de thème */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--shadow-color);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -736,7 +738,7 @@ footer p {
 
 .blog-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .blog-card-image {
@@ -1003,4 +1005,68 @@ header {
     align-items: center;
     padding: 15px 50px; /* Ajustez le padding si nécessaire */
     /* ... le reste de votre CSS de header */
+}
+
+.card {
+    background-color: var(--secondary-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color); /* Utilise la variable d'ombre */
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Ajout/Vérification des transitions */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Monte légèrement */
+    box-shadow: 0 8px 16px var(--shadow-color); /* Ombre plus intense */
+}
+
+/* Dans votre section pour nav ul li a */
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Ajout/Vérification */
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.1); /* Exemple d'arrière-plan subtil au survol */
+}
+
+/* Pour tous les boutons généraux */
+.btn { /* Si vous avez un bouton générique */
+    background-color: var(--accent-color);
+    color: #fff; /* Couleur de texte fixe pour les boutons accentués */
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none; /* Si c'est un lien stylisé en bouton */
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Ajout/Vérification */
+}
+
+.btn:hover {
+    background-color: var(--primary-color); /* Change de couleur au survol */
+    transform: translateY(-2px); /* Léger mouvement vers le haut */
+}
+
+/* Animation pour l'apparition des sections */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
