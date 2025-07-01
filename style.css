@@ -1070,3 +1070,70 @@ nav ul li a:hover {
         transform: translateY(0);
     }
 }
+
+/* --- Carrousel Styles --- */
+.carousel-container {
+    width: 100%;
+    max-width: 1400px; /* Adaptez à la largeur max que vous souhaitez */
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden; /* Cache les images qui débordent */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.carousel-slide {
+    display: flex; /* Les images s'alignent horizontalement */
+    transition: transform 0.5s ease-in-out; /* Animation de transition */
+}
+
+.carousel-slide img {
+    width: 100%; /* Chaque image prend 100% de la largeur du conteneur visible */
+    height: 500px; /* Hauteur fixe pour toutes les images du carrousel */
+    object-fit: cover; /* Assure que l'image couvre l'espace sans se déformer */
+    flex-shrink: 0; /* Empêche les images de rétrécir */
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 2em;
+    z-index: 100; /* Assure que les boutons sont au-dessus des images */
+    border-radius: 50%; /* Boutons ronds */
+    transition: background-color 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* Responsive pour le carrousel */
+@media (max-width: 768px) {
+    .carousel-slide img {
+        height: 300px; /* Réduit la hauteur sur mobile */
+    }
+    .carousel-btn {
+        padding: 10px;
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide img {
+        height: 200px; /* Encore plus petit sur très petits écrans */
+    }
+}

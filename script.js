@@ -74,4 +74,64 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', 'dark-theme');
         }
     });
+      // --- Carrousel Logic ---
+    const carouselSlide = document.querySelector('.carousel-slide');
+    if (carouselSlide) { // Vérifie si le carrousel existe sur la page
+        const carouselImages = document.querySelectorAll('.carousel-slide img');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let counter = 0;
+        const size = carouselImages[0].clientWidth; // Largeur d'une seule image
+
+        // Fonction pour mettre à jour la position du carrousel
+        function updateCarouselPosition() {
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        }
+
+        // Bouton Suivant
+        nextBtn.addEventListener('click', () => {
+            if (counter >= carouselImages.length - 1) return; // Empêche d'aller au-delà de la dernière image
+            counter++;
+            updateCarouselPosition();
+        });
+
+        // Bouton Précédent
+        prevBtn.addEventListener('click', () => {
+            if (counter <= 0) return; // Empêche d'aller avant la première image
+            counter--;
+            updateCarouselPosition();
+        });
+
+        // Optionnel : Défilement automatique
+        let autoSlideInterval = setInterval(() => {
+            counter++;
+            if (counter >= carouselImages.length) {
+                counter = 0; // Revient à la première image si on atteint la fin
+            }
+            updateCarouselPosition();
+        }, 5000); // Change d'image toutes les 5 secondes
+
+        // Optionnel : Arrêter le défilement automatique au survol
+        carouselContainer = document.querySelector('.carousel-container'); // Définissez cette variable
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(() => {
+                counter++;
+                if (counter >= carouselImages.length) {
+                    counter = 0;
+                }
+                updateCarouselPosition();
+            }, 5000);
+        });
+
+        // Ajuster le carrousel si la fenêtre est redimensionnée
+        window.addEventListener('resize', () => {
+            size = carouselImages[0].clientWidth; // Recalcule la taille de l'image
+            updateCarouselPosition();
+        });
+    }
 });
